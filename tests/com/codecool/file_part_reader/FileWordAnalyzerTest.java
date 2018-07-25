@@ -1,5 +1,6 @@
 package com.codecool.file_part_reader;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,12 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileWordAnalyzerTest {
 
     private String TEST_FILE_PATH = "files/testFile.txt";
+    private FilePartReader reader;
+    private FileWordAnalyzer analyzer;
+
+    @BeforeEach
+    void initReaderAndAnalyzer() {
+        reader = new FilePartReader();
+        analyzer = new FileWordAnalyzer(reader);
+    }
 
     @Test
     void When_WordsByABCIsCalled_Expect_ReturnWordsAlphabetically() {
-        FilePartReader reader = new FilePartReader();
         reader.setup(TEST_FILE_PATH, 1, 2);
-        FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
 
         ArrayList<String> expected = new ArrayList<>();
         expected.add("assignment");
@@ -36,6 +43,25 @@ class FileWordAnalyzerTest {
         assertEquals(expected, analyzer.wordsByABC());
     }
 
+    @Test
+    void When_wordsContainingSubStringIsCalled_Expect_ReturnWordsWithSubstring() {
+        reader.setup(TEST_FILE_PATH, 1, 1);
 
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("will");
+        expected.add("files");
+
+        assertEquals(expected, analyzer.wordsContainingSubString("il"));
+
+        reader.setup(TEST_FILE_PATH, 2, 4);
+
+        expected = new ArrayList<>();
+        expected.add("cannot");
+        expected.add("enough");
+        expected.add("molino");
+        expected.add("minotaur");
+
+        assertEquals(expected, analyzer.wordsContainingSubString("no"));
+    }
 
 }
