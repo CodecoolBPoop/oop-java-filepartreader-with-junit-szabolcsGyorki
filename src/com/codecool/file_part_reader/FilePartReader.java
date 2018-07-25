@@ -2,9 +2,10 @@ package com.codecool.file_part_reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FilePartReader {
 
@@ -27,7 +28,7 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    private String read() throws FileNotFoundException {
+    String read() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filePath));
         StringBuilder content = new StringBuilder();
         while (scanner.hasNextLine()) {
@@ -40,12 +41,11 @@ public class FilePartReader {
     }
 
     String readLines() throws FileNotFoundException {
-        return read();
+        String content = read();
+        ArrayList<String> selectedLines = new ArrayList<>(Arrays.asList(content.split("\n")));
+        return selectedLines.stream()
+                .filter(s -> selectedLines.indexOf(s) >= fromLine - 1 && selectedLines.indexOf(s) <= toLine - 1)
+                .collect(Collectors.joining("\n"));
     }
 
-    public static void main(String[] args) throws Exception {
-        FilePartReader fpr = new FilePartReader();
-        fpr.setup("files/testFile.txt", 1, 4);
-        fpr.read();
-    }
 }
