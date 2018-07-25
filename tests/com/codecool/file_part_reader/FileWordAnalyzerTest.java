@@ -64,4 +64,16 @@ class FileWordAnalyzerTest {
         assertEquals(expected, analyzer.wordsContainingSubString("no"));
     }
 
+    @Test
+    void When_wordsArePalindromeICalled_Expect_ReturnPalindromes() {
+        reader.setup(TEST_FILE_PATH, 1,5);
+
+        ArrayList<String > expected = new ArrayList<>();
+        expected.add("lol");
+        expected.add("devoved");
+        expected.add("madam");
+
+        assertEquals(expected, analyzer.wordsArePalindrome());
+    }
+
 }
