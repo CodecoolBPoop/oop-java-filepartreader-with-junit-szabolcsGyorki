@@ -52,8 +52,14 @@ public class FilePartReader {
         return content.toString();
     }
 
-    String readLines() throws FileNotFoundException {
-        String content = read();
+    String readLines() {
+        String content;
+        try {
+            content = read();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
         ArrayList<String> selectedLines = new ArrayList<>(Arrays.asList(content.split("\n")));
         return selectedLines.stream()
                 .filter(s -> selectedLines.indexOf(s) >= fromLine - 1 && selectedLines.indexOf(s) <= toLine - 1)

@@ -23,7 +23,7 @@ class FilePartReaderTest {
     @Test
     void When_SetupIsCalledWithIllegalValues_Expect_ThrowsIllegalArgumentException() {
         FilePartReader reader = new FilePartReader();
-        assertThrows(IllegalArgumentException.class, () -> {reader.setup(TEST_FILE_PATH, 3, 2);});
+        assertThrows(IllegalArgumentException.class, () -> reader.setup(TEST_FILE_PATH, 3, 2));
     }
 
     @Test
@@ -46,7 +46,7 @@ class FilePartReaderTest {
     }
 
     @Test
-    void When_InputsAreCorrect_Expect_GivenLinesAreReturned() throws FileNotFoundException {
+    void When_InputsAreCorrect_Expect_GivenLinesAreReturned() {
         String expected = "because we cannot have enough file readers\n" +
                 "devoved we are oh yeah";
         FilePartReader reader = new FilePartReader();
