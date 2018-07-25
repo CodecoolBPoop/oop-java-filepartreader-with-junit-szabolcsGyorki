@@ -30,8 +30,8 @@ class FilePartReaderTest {
     void When_FilePathIsCorrect_Expect_ContentReturnedAsString() throws FileNotFoundException {
         String originalContent = "This assignment we will work lol with files\n" +
                 "because we cannot have enough file readers\n" +
-                "devoved we are oh yeah\n" +
-                "The madam is in charge here\n" +
+                "devoved we are oh yeah molino\n" +
+                "The minotaur madam is in charge here\n" +
                 "Who can be the first racer in this evening";
         FilePartReader reader = new FilePartReader();
         reader.setup(TEST_FILE_PATH, 1, 5);
@@ -48,7 +48,7 @@ class FilePartReaderTest {
     @Test
     void When_InputsAreCorrect_Expect_GivenLinesAreReturned() {
         String expected = "because we cannot have enough file readers\n" +
-                "devoved we are oh yeah";
+                "devoved we are oh yeah molino";
         FilePartReader reader = new FilePartReader();
         reader.setup(TEST_FILE_PATH, 2, 3);
         assertEquals(expected, reader.readLines());
@@ -58,8 +58,8 @@ class FilePartReaderTest {
         assertEquals(expected, reader.readLines());
 
         expected = "because we cannot have enough file readers\n" +
-                "devoved we are oh yeah\n" +
-                "The madam is in charge here\n" +
+                "devoved we are oh yeah molino\n" +
+                "The minotaur madam is in charge here\n" +
                 "Who can be the first racer in this evening";
         reader.setup(TEST_FILE_PATH, 2, 5);
         assertEquals(expected, reader.readLines());
