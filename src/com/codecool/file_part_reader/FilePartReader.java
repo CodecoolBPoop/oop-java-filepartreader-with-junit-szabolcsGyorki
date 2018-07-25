@@ -19,6 +19,18 @@ public class FilePartReader {
         this.toLine = 1;
     }
 
+    String getFilePath() {
+        return filePath;
+    }
+
+    Integer getFromLine() {
+        return fromLine;
+    }
+
+    Integer getToLine() {
+        return toLine;
+    }
+
     void setup(String filePath, Integer fromLine, Integer toLine) throws IllegalArgumentException {
         if (toLine < fromLine || fromLine < 1) {
             throw new IllegalArgumentException();
