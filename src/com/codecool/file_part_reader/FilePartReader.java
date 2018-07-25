@@ -19,10 +19,6 @@ public class FilePartReader {
         this.toLine = 1;
     }
 
-    String getFilePath() {
-        return filePath;
-    }
-
     Integer getFromLine() {
         return fromLine;
     }
@@ -57,7 +53,6 @@ public class FilePartReader {
         try {
             content = read();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return null;
         }
         ArrayList<String> selectedLines = new ArrayList<>(Arrays.asList(content.split("\n")));
